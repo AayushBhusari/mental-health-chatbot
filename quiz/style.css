@@ -1,0 +1,86 @@
+body {
+  height: 100dvh;
+  width: 100dvw;
+  margin: 0;
+  background-color: #e6ecf0; /* Light background color */
+  font-family: "Open Sans", sans-serif;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2b6c6c; /* Dark teal */
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+nav .left h2 {
+  color: #ffffff; /* White text */
+  font-size: 1.5rem;
+}
+
+nav .right ul {
+  list-style: none;
+  display: flex;
+  gap: 20px; /* Space between items */
+}
+
+nav .right ul li {
+  color: #ffffff; /* White text for menu items */
+}
+
+nav .right ul li a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s;
+}
+
+nav .right ul li a:hover {
+  color: #00aaff; /* Change color on hover */
+}
+.wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#quiz-container {
+  margin-top: 200px;
+  height: 80%;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 400px;
+  text-align: center;
+}
+
+.btn {
+  background-color: #2b6c6c; /* Dark teal */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #00aaff; /* Light teal on hover */
+}
+
+.hidden {
+  display: none;
+}
+
+h1,
+h2 {
+  margin: 10px 0;
+}
+
+#result-container p {
+  margin: 10px 0 20px; /* Space below the result text */
+}

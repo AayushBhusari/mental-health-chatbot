@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pixel Color Game</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      #game-container {
+        text-align: center;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      #grid-container {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+      }
+
+      .row {
+        display: flex;
+      }
+
+      .cell {
+        width: 25px;
+        height: 25px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .cell:hover {
+        border-color: #333;
+      }
+
+      #controls {
+        margin: 20px 0;
+      }
+
+      #generate-shape-btn {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #1db954;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      #generate-shape-btn:hover {
+        background-color: #148c3d;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="game-container">
+      <h1>Pixel Color Game</h1>
+      <p>Click on a cell to fill it with color!</p>
+
+      <div id="grid-container"></div>
+
+      <div id="controls">
+        <label for="color-picker">Select a Color: </label>
+        <input type="color" id="color-picker" value="#000000" />
+      </div>
+
+      <button id="generate-shape-btn">Generate Random Shape</button>
+    </div>
+
+    <script>
+      const gridContainer = document.getElementById("grid-container");
+      const colorPicker = document.getElementById("color-picker");
+      const generateShapeBtn = document.getElementById("generate-shape-btn");
+      const gridSize = 20; // 20x20 grid for more flexibility with shapes
+
+      // Create the grid dynamically
+      function createGrid() {
+        gridContainer.innerHTML = ""; // Clear any existing grid
+        for (let row = 0; row < gridSize; row++) {
+          const rowDiv = document.createElement("div");
+          rowDiv.classList.add("row");
+          for (let col = 0; col < gridSize; col++) {
+            const cell = document.createElement("div");
+            cell.classList.add("cell");
+            cell.setAttribute("data-row", row);
+            cell.setAttribute("data-col", col);
+
+            // Add event listener for coloring
+            cell.addEventListener("click", function () {
+              this.style.backgroundColor = colorPicker.value;
+            });
+
+            rowDiv.appendChild(cell);
+          }
+          gridContainer.appendChild(rowDiv);
+        }
+      }
+
+      // Predefined shapes as pixel positions
+      const shapes = {
+        square: [
+          { row: 5, col: 5 },
+          { row: 5, col: 6 },
+          { row: 5, col: 7 },
+          { row: 5, col: 8 },
+          { row: 6, col: 5 },
+          { row: 6, col: 6 },
+          { row: 6, col: 7 },
+          { row: 6, col: 8 },
+          { row: 7, col: 5 },
+          { row: 7, col: 6 },
+          { row: 7, col: 7 },
+          { row: 7, col: 8 },
+          { row: 8, col: 5 },
+          { row: 8, col: 6 },
+          { row: 8, col: 7 },
+          { row: 8, col: 8 },
+        ],
+        circle: [
+          { row: 10, col: 10 },
+          { row: 10, col: 11 },
+          { row: 10, col: 12 },
+          { row: 10, col: 13 },
+          { row: 11, col: 9 },
+          { row: 11, col: 10 },
+          { row: 11, col: 11 },
+          { row: 11, col: 12 },
+          { row: 11, col: 13 },
+          { row: 11, col: 14 },
+          { row: 12, col: 9 },
+          { row: 12, col: 10 },
+          { row: 12, col: 14 },
+          { row: 12, col: 13 },
+          { row: 13, col: 10 },
+          { row: 13, col: 11 },
+          { row: 13, col: 12 },
+          { row: 13, col: 13 },
+        ],
+        triangle: [
+          { row: 15, col: 10 },
+          { row: 16, col: 9 },
+          { row: 16, col: 11 },
+          { row: 17, col: 8 },
+          { row: 17, col: 9 },
+          { row: 17, col: 10 },
+          { row: 17, col: 11 },
+          { row: 17, col: 12 },
+          { row: 18, col: 7 },
+          { row: 18, col: 8 },
+          { row: 18, col: 9 },
+          { row: 18, col: 10 },
+          { row: 18, col: 11 },
+          { row: 18, col: 12 },
+          { row: 18, col: 13 },
+        ],
+      };
+
+      // Function to generate random shape on the grid
+      function generateRandomShape() {
+        const shapeKeys = Object.keys(shapes);
+        const randomShapeKey =
+          shapeKeys[Math.floor(Math.random() * shapeKeys.length)];
+        const selectedShape = shapes[randomShapeKey];
+
+        // Fill the cells for the selected shape
+        selectedShape.forEach((position) => {
+          const cell = document.querySelector(
+            `.cell[data-row='${position.row}'][data-col='${position.col}']`
+          );
+          if (cell) {
+            cell.style.backgroundColor = "#ddd"; // Default shape color (gray)
+          }
+        });
+      }
+
+      // Initialize grid on page load
+      createGrid();
+
+      // Button to generate random shape
+      generateShapeBtn.addEventListener("click", generateRandomShape);
+    </script>
+  </body>
+</html>

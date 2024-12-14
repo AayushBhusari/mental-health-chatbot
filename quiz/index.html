@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mental Stress Quiz</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="left"><h2>BlissBuddy</h2></div>
+      <div class="right">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li>
+            <a href="/quiz/index.html" target="_blank">Mental Health Quiz</a>
+          </li>
+          <li><a href="/game/index.html" target="_blank">Play Game</a></li>
+          <li><a href="/meme/index.html" target="_blank">Memes</a></li>
+          <li><a href="/joke/index.html" target="_blank">Jokes</a></li>
+          <li><a href="/music/index.html" target="_blank">Music</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="wrap">
+      <div id="quiz-container">
+        <div id="question-container">
+          <h1 id="question"></h1>
+          <div id="answer-buttons" class="btn-container"></div>
+          <button id="next-button" class="btn hidden">Next</button>
+        </div>
+        <div id="result-container" class="hidden">
+          <h2 id="result-text"></h2>
+          <p id="solution-text"></p>
+          <button id="restart-button" class="btn">Restart</button>
+          <button class="btn">
+            <a href="../index.html">Talk to Companion</a>
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

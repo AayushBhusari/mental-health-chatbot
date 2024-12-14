@@ -1,0 +1,75 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+.playlist-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h1 {
+  color: #1db954; /* Spotify Green */
+}
+
+.playlist {
+  margin: 20px 0;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background-color: #1db954;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #148c3d;
+}
+/* Navbar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2b6c6c; /* Dark teal background */
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+nav .left h2 {
+  color: #ffffff; /* White text for the brand name */
+  font-size: 1.5rem;
+}
+
+nav .right ul {
+  list-style: none;
+  display: flex;
+  gap: 20px; /* Space between items */
+  display: flex;
+}
+
+nav .right ul li {
+  color: #ffffff; /* White text for menu items */
+  cursor: pointer;
+  transition: color 0.3s;
+  color: white;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+
+nav .right ul li:hover {
+  color: #00aaff; /* Change color on hover */
+}

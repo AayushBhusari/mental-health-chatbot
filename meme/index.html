@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Meme Generator with API</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      /* Navbar */
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #2b6c6c; /* Dark teal background */
+        padding: 10px 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      nav .left h2 {
+        color: #ffffff; /* White text for the brand name */
+        font-size: 1.5rem;
+      }
+
+      nav .right ul {
+        list-style: none;
+        display: flex;
+        gap: 20px; /* Space between items */
+        display: flex;
+      }
+
+      nav .right ul li {
+        color: #ffffff; /* White text for menu items */
+        cursor: pointer;
+        transition: color 0.3s;
+        color: white;
+      }
+      a {
+        text-decoration: none;
+        color: white;
+      }
+
+      nav .right ul li:hover {
+        color: #00aaff;
+      }
+
+      .container {
+        margin: 50px auto;
+        width: 80%;
+        max-width: 600px;
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 18px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #218838;
+      }
+
+      .meme-container {
+        margin-top: 20px;
+      }
+
+      #memeImage {
+        max-width: 100%;
+        height: auto;
+        display: none;
+      }
+
+      #memeTitle {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 20px;
+        display: none;
+      }
+
+      #loading {
+        display: none;
+        font-size: 18px;
+        color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="left"><h2>Name</h2></div>
+      <div class="right">
+        <ul>
+          <li>Home</li>
+          <li>
+            <a href="/quiz/index.html" target="_blank">Mental Health Quiz</a>
+          </li>
+          <li><a href="/game/index.html" target="_blank">Play Game</a></li>
+          <li><a href="/meme/index.html" target="_blank">Memes</a></li>
+          <li><a href="/joke/index.html" target="_blank">Jokes</a></li>
+          <li>
+            <a href="/music/index.html" target="_blank">Music</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <h1>Random Meme Generator with Context</h1>
+      <button id="generateMeme">Show Random Meme</button>
+      <div class="meme-container">
+        <p id="loading">Loading meme...</p>
+        <p id="memeTitle"></p>
+        <img id="memeImage" src="" alt="Meme will appear here" />
+      </div>
+    </div>
+
+    <script>
+      const memeImage = document.getElementById("memeImage");
+      const memeButton = document.getElementById("generateMeme");
+      const memeTitle = document.getElementById("memeTitle");
+      const loadingText = document.getElementById("loading");
+
+      memeButton.addEventListener("click", () => {
+        // Show loading text while meme loads
+        loadingText.style.display = "block";
+        memeImage.style.display = "none";
+        memeTitle.style.display = "none";
+
+        // Fetch random meme from Meme API
+        fetch("https://meme-api.com/gimme")
+          .then((response) => response.json())
+          .then((data) => {
+            const memeUrl = data.url;
+            const memeCaption = data.title;
+
+            // Display meme title and image
+            memeTitle.textContent = memeCaption;
+            memeImage.src = memeUrl;
+            memeImage.style.display = "block";
+            memeTitle.style.display = "block";
+
+            // Hide loading text
+            loadingText.style.display = "none";
+          })
+          .catch((error) => {
+            console.error("Error fetching meme:", error);
+            loadingText.textContent = "Failed to load meme. Try again!";
+          });
+      });
+    </script>
+  </body>
+</html>

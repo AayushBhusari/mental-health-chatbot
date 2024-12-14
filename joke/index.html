@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jokes</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+      * {
+        box-sizing: border-box;
+        font-family: "Open Sans", sans-serif;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        background-color: #e6ecf0; /* Light background color for body */
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Navbar */
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #2b6c6c; /* Dark teal background */
+        padding: 10px 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      nav .left h2 {
+        color: #ffffff; /* White text for the brand name */
+        font-size: 1.5rem;
+      }
+
+      nav .right ul {
+        list-style: none;
+        display: flex;
+        gap: 20px; /* Space between items */
+        display: flex;
+      }
+
+      nav .right ul li {
+        color: #ffffff; /* White text for menu items */
+        cursor: pointer;
+        transition: color 0.3s;
+        color: white;
+      }
+      a {
+        text-decoration: none;
+        color: white;
+      }
+
+      nav .right ul li:hover {
+        color: #00aaff; /* Change color on hover */
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+        padding: 20px;
+      }
+
+      #joke-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 600px;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .joke-text {
+        margin: 10px 0;
+        text-align: center;
+      }
+
+      .btn {
+        background-color: #28a745; /* Green background for buttons */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn:hover {
+        background-color: #218c3f; /* Darker green on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="left"><h2>Name</h2></div>
+      <div class="right">
+        <ul>
+          <li>Home</li>
+          <li>
+            <a href="/quiz/index.html" target="_blank">Mental Health Quiz</a>
+          </li>
+          <li><a href="/game/index.html" target="_blank">Play Game</a></li>
+          <li><a href="/meme/index.html" target="_blank">Memes</a></li>
+          <li><a href="/joke/index.html" target="_blank">Jokes</a></li>
+          <li>
+            <a href="/music/index.html" target="_blank">Music</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <div id="joke-container">
+        <h1>Want to hear a joke?</h1>
+        <button class="btn" onclick="fetchJoke()">Tell me a joke!</button>
+        <p id="joke-setup" class="joke-text"></p>
+        <p id="joke-punchline" class="joke-text"></p>
+      </div>
+    </div>
+    <script>
+      function fetchJoke() {
+        // Clear previous joke
+        document.getElementById("joke-setup").textContent = "";
+        document.getElementById("joke-punchline").textContent = "";
+
+        // Fetch the joke from the Joke API
+        fetch("https://official-joke-api.appspot.com/random_joke")
+          .then((response) => response.json())
+          .then((data) => {
+            // Display the joke on the page
+            document.getElementById("joke-setup").textContent = data.setup;
+            document.getElementById("joke-punchline").textContent =
+              data.punchline;
+            document.getElementById("joke-punchline").textContent += "😂";
+          })
+          .catch((error) => {
+            document.getElementById("joke-setup").textContent =
+              "Oops, something went wrong!";
+            console.error("Error fetching joke:", error);
+          });
+      }
+    </script>
+  </body>
+</html>

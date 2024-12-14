@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <!-- Main Body -->
+    <nav>
+      <div class="left"><h2>BlissBuddy</h2></div>
+      <div class="right">
+        <ul>
+          <li>Home</li>
+          <li>
+            <a href="/quiz/index.html" target="_blank">Mental Health Quiz</a>
+          </li>
+          <li><a href="./game/pixel.html" target="_blank">Play Game</a></li>
+          <li><a href="/meme/index.html" target="_blank">Memes</a></li>
+          <li><a href="/joke/index.html" target="_blank">Jokes</a></li>
+          <li>
+            <a href="/music/index.html" target="_blank">Music</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="chat-container">
+        <div class="chat-head">
+          <h2 id="cb-text">Mental Health Chatbot</h2>
+        </div>
+        <div class="chat-box" id="chatBox"></div>
+        <div class="chat-ctrls">
+          <input
+            type="text"
+            id="userInput"
+            placeholder="Type your message..."
+          />
+          <button id="sendButton">Send</button>
+        </div>
+      </div>
+    </div>
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/generative-ai": "https://esm.run/@google/generative-ai"
+        }
+      }
+    </script>
+    <script type="module" src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/3.0.8/marked.min.js"></script>
+  </body>
+</html>
